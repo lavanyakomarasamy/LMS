@@ -1,0 +1,42 @@
+spring:
+ profiles.active: development
+ jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy 
+eureka.client.healthcheck.enabled: true
+spring.data.jpa.repositories.enabled: true
+
+security:
+  basic:
+    enabled: false
+
+javers:
+  mappingStyle: FIELD
+  algorithm: LEVENSHTEIN_DISTANCE
+  prettyPrint: true
+  typeSafeValues: false
+  newObjectSnapshot: true
+
+spring.jpa:
+    show-sql: true
+    format-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+---
+spring:
+ profiles: development
+lms.datasource:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/lms
+  username: root
+  password: root
+  accessToUnderlyingConnectionAllowed: true
+  max-active: 25
+  max-idle: 10
+  min-idle: 1
+  initial-size: 1
+  validation-query: "SELECT 1"
+  test-on-borrow: true
+server:
+  port: 15008
