@@ -1,46 +1,25 @@
-package com.newt.lms.model;
+package com.newt.lms.model.jpa.dao;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
-
-
-/**
- * The persistent class for the login database table.
- * 
- */
-@Entity
-@NamedQuery(name="Login.findAll", query="SELECT l FROM Login l")
-public class Login implements Serializable {
+public class LoginReq implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="login_id")
 	private Integer loginId;
 
-	@Column(name="created_date")
 	private Date createdDate;
 
-	@Column(name="modified_date")
 	private Date modifiedDate;
 
 	private String password;
 
-	@Column(name="user_id")
 	private String userId;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="emp_id")
-	private Employee employee;
-
-	public Login() {
-	}
+	private Integer employeeId;
 
 	public Integer getLoginId() {
-		return this.loginId;
+		return loginId;
 	}
 
 	public void setLoginId(Integer loginId) {
@@ -48,7 +27,7 @@ public class Login implements Serializable {
 	}
 
 	public Date getCreatedDate() {
-		return this.createdDate;
+		return createdDate;
 	}
 
 	public void setCreatedDate(Date createdDate) {
@@ -56,7 +35,7 @@ public class Login implements Serializable {
 	}
 
 	public Date getModifiedDate() {
-		return this.modifiedDate;
+		return modifiedDate;
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
@@ -64,7 +43,7 @@ public class Login implements Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -72,19 +51,18 @@ public class Login implements Serializable {
 	}
 
 	public String getUserId() {
-		return this.userId;
+		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public Employee getEmployee() {
-		return this.employee;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
-
 }

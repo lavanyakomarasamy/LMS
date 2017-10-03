@@ -5,7 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.newt.lms.model.Employee;
+import com.newt.lms.model.jpa.dao.Employee;
+import com.newt.lms.model.jpa.dto.EmployeeDTO;
 import com.newt.lms.repository.EmployeeRepository;
 
 @Service
@@ -19,15 +20,22 @@ public class EmployeeService {
 		return employeeRepository.findOne(employeeReq.getEmployeeId());
 	}
 	
-	public Employee createEmployee(Employee employeeReq) {
-		System.out.println("===================="+new Date());
-		System.out.println("=========DOB==========="+employeeReq.getDob());
-		System.out.println("=========DOJ==========="+employeeReq.getDoj());
+	public Employee createEmployee(EmployeeDTO employeeDTO) {
 		
-		
-		employeeReq.setCreatedDate(new Date());
-		employeeReq.setModifiedDate(new Date());
-		return employeeRepository.save(employeeReq);
+		Employee employee = new Employee();
+		Date date = new Date();
+		employee.setDob(employeeDTO.getDob());
+		employee.setDoj(employeeDTO.getDoj());
+		employee.setCreatedDate(date);
+		employee.setModifiedDate(date);
+		employee.setDesignation(employeeDTO.getDesignation());
+		employee.setDirectReporterId(employeeDTO.getDirectReporterId());
+		employee.setEmployeeId(employeeDTO.getEmployeeId());
+		employee.setEmployeeName(employeeDTO.getEmployeeName());
+		employee.setMaritalStatus(employeeDTO.getMaritalStatus());
+	
+		employee = employeeRepository.save(employee);
+		return employee;
 	}
 	
 }

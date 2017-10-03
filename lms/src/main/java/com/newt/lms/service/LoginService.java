@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.newt.lms.model.Login;
+import com.newt.lms.model.jpa.dao.Login;
 import com.newt.lms.repository.LoginRepository;
 import com.newt.lms.repository.LoginSpec;
 

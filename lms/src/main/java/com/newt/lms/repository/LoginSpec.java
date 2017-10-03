@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.newt.lms.model.Login;
+import com.newt.lms.model.jpa.dao.Login;
 
 
 public class LoginSpec implements Specification<Login> {
