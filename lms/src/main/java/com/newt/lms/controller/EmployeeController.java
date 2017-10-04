@@ -58,8 +58,8 @@ public class EmployeeController {
 		String createstatusMsg = null;
     	
 		validateCreateEmployee(employeeDTO);
-		
 		Employee employee = employeeService.createEmployee(employeeDTO);
+		
 		returnCreateStatus = true;
 		if (employee != null) {
 			createStatusCode = StatusCode.SUCCESS.getCode();
