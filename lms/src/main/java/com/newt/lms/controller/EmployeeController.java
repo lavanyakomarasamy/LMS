@@ -20,6 +20,7 @@ import com.newt.lms.model.jpa.dao.EmployeeResponse;
 import com.newt.lms.model.jpa.dao.ResponseStatus;
 import com.newt.lms.model.jpa.dto.EmployeeDTO;
 import com.newt.lms.service.EmployeeService;
+import com.newt.lms.utils.EmployeeUtils;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,7 +36,10 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-
+	
+	/*@Autowired
+	EmployeeUtils employeeUtils;
+*/
 	/**
 	 * Create Employee
 	 * 
