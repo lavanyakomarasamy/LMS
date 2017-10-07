@@ -5,9 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.newt.lms.jpa.repository.EmployeeRepository;
 import com.newt.lms.model.jpa.dao.Employee;
 import com.newt.lms.model.jpa.dto.EmployeeDTO;
-import com.newt.lms.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
@@ -38,4 +38,15 @@ public class EmployeeService {
 		return employee;
 	}
 	
-}
+/*	public Employee createEmployee(EmployeeDTO employeeDTO) {
+
+		Date date = new Date();
+		Employee employee = resourceMapper.convertEmployeeDTOToEmployeeDAO(employeeDTO);
+		employee.setCreatedDate(date);
+		employee.setModifiedDate(date);
+		employee = employeeRepository.save(employee);
+
+		return employee;
+	}
+
+*/}

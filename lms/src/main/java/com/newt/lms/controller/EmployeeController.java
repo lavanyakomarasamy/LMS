@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.newt.lms.constants.EmployeeConstants;
 import com.newt.lms.constants.StatusCode;
 import com.newt.lms.exception.ApplicationException;
 import com.newt.lms.model.jpa.dao.Employee;
@@ -24,44 +25,42 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/LMS")
 public class EmployeeController {
 	/**
-     * Logger
-     */
-    private static final Logger LOGGER = Logger.getLogger(EmployeeController.class);
-    
-    @Autowired
-    private EmployeeService employeeService;
-    
-    /**
-     * Create Employee
-     * 
-     * @param EmployeeDTO
-     * @return
-     * @throws ApplicationException 
-     */
-    @RequestMapping(value = "/createEmployee", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    @CrossOrigin(origins = { "*" })
-    @ApiOperation(value = "Create Employee", notes = "Returns a response of Employee creation. SLA:500", response = EmployeeResponse.class)
-    @ApiResponses(value = {
-	    @ApiResponse(code = 200, message = "Successful Creation Of Employee", response = EmployeeResponse.class),
-	    @ApiResponse(code = 404, message = "Creation Of LEmployee Failed"),
-	    @ApiResponse(code = 400, message = "Invalid Input Provided") })
-    public ResponseEntity<EmployeeResponse> createEmployee(@RequestBody EmployeeDTO employeeDTO) throws ApplicationException {
-    	
-    	EmployeeResponse response = new EmployeeResponse();
-    	Boolean returnCreateStatus = false;
+	 * Logger
+	 */
+	private static final Logger LOGGER = Logger.getLogger(EmployeeController.class);
+
+	@Autowired
+	private EmployeeService employeeService;
+
+	/**
+	 * Create Employee
+	 * 
+	 * @param EmployeeDTO
+	 * @return
+	 * @throws ApplicationException
+	 */
+	@RequestMapping(value = "/createEmployee", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	@CrossOrigin(origins = { "*" })
+	@ApiOperation(value = "Create Employee", notes = "Returns Response Of Employee Creation. SLA:500", response = EmployeeResponse.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully Created Employee", response = EmployeeResponse.class),
+			@ApiResponse(code = 404, message = "Creation Of Employee Failed"),
+			@ApiResponse(code = 400, message = "Invalid Input Provided") })
+	public ResponseEntity<EmployeeResponse> createEmployee(@RequestBody EmployeeDTO employeeDTO) throws ApplicationException {
+
+		EmployeeResponse response = new EmployeeResponse();
+		Boolean returnCreateStatus = false;
 		String createStatusCode = null;
 		String createstatusMsg = null;
-    	
+
 		validateCreateEmployee(employeeDTO);
 		Employee employee = employeeService.createEmployee(employeeDTO);
-		
-		returnCreateStatus = true;
 		if (employee != null) {
+			returnCreateStatus = true;
 			createStatusCode = StatusCode.SUCCESS.getCode();
 			createstatusMsg = StatusCode.SUCCESS.getDesc();
 
@@ -69,33 +68,48 @@ public class EmployeeController {
 			createStatusCode = StatusCode.DATA_NOT_FOUND.getCode();
 			createstatusMsg = StatusCode.DATA_NOT_FOUND.getDesc();
 		}
-		
-    	ResponseStatus responseStatus = new ResponseStatus();
+
+		ResponseStatus responseStatus = new ResponseStatus();
 		responseStatus.setCode(createStatusCode);
 		responseStatus.setDescription(createstatusMsg);
 		response.setStatus(responseStatus);
-		
-    	if (returnCreateStatus) {
-    		response.setEmployee(employee);
-    		LOGGER.debug("Employee created successfully");
+
+		if (returnCreateStatus) {
+			response.setEmployee(employee);
+			LOGGER.debug("Employee created successfully");
 			return ResponseEntity.ok(response);
 		} else {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(response);
 		}
-    }
+	}
 
 	private void validateCreateEmployee(EmployeeDTO employeeDTO) throws ApplicationException {
+		String validateStatus = valCrteEmpMandFildsChck(employeeDTO);
+		if (validateStatus != null) {
+			throw new ApplicationException(StatusCode.BAD_REQUEST.getCode(), validateStatus);
+		}
+	}
+	
+	public String valCrteEmpMandFildsChck(EmployeeDTO employeeDTO) {
 		
-		int empId = employeeDTO.getEmployeeId();
-		String empName = employeeDTO.getEmployeeName();
+		Long empId = employeeDTO.getEmployeeId() == null ? 0L : employeeDTO.getEmployeeId();
+		String empName = employeeDTO.getEmployeeName() == null ? "" : employeeDTO.getEmployeeName().trim();
 		Date doj = employeeDTO.getDoj();
 		Date dob = employeeDTO.getDob();
-				
-		if(empId == 0 || (empName.isEmpty() || empName == null) || (doj == null || dob == null))
-		{
-			LOGGER.debug("Mandatory values are missing ");
-			throw new ApplicationException("407", "Mandatory values are missing");
+
+		if (empId == 0) {
+			return EmployeeConstants.EMP_ID;
 		}
-		
-	}    
+		if (empName == null || empName.isEmpty()) {
+			return EmployeeConstants.EMP_NAME;
+		}
+		if (doj == null) {
+			return EmployeeConstants.DOJ;
+		}
+		if (dob == null) {
+			return EmployeeConstants.DOB;
+		}
+		return null;
+	}
+
 }

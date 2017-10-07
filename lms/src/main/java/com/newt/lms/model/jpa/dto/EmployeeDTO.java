@@ -10,13 +10,13 @@ import java.util.Date;
 public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer employeeId;
+	private Long employeeId;
 
 	private Date createdDate;
 
 	private String designation;
 
-	private int directReporterId;
+	private Long directReporterId;
 
 	private Date dob;
 
@@ -31,11 +31,11 @@ public class EmployeeDTO implements Serializable {
 	public EmployeeDTO() {
 	}
 
-	public Integer getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -55,11 +55,11 @@ public class EmployeeDTO implements Serializable {
 		this.designation = designation;
 	}
 
-	public int getDirectReporterId() {
+	public Long getDirectReporterId() {
 		return directReporterId;
 	}
 
-	public void setDirectReporterId(int directReporterId) {
+	public void setDirectReporterId(Long directReporterId) {
 		this.directReporterId = directReporterId;
 	}
 

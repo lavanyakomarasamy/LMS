@@ -6,7 +6,7 @@ import java.util.Date;
 public class LoginReq implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer loginId;
+	private Long loginId;
 
 	private Date createdDate;
 
@@ -16,13 +16,13 @@ public class LoginReq implements Serializable {
 
 	private String userId;
 
-	private Integer employeeId;
+	private Long employeeId;
 
-	public Integer getLoginId() {
+	public Long getLoginId() {
 		return loginId;
 	}
 
-	public void setLoginId(Integer loginId) {
+	public void setLoginId(Long loginId) {
 		this.loginId = loginId;
 	}
 
@@ -58,11 +58,11 @@ public class LoginReq implements Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 }
