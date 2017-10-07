@@ -1,7 +1,5 @@
 package com.newt.lms.controller;
 
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.newt.lms.constants.EmployeeConstants;
 import com.newt.lms.constants.StatusCode;
 import com.newt.lms.exception.ApplicationException;
 import com.newt.lms.model.jpa.dao.Employee;
@@ -26,6 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/LMS")
 public class EmployeeController {
@@ -36,10 +34,10 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-	
-	/*@Autowired
+
+	@Autowired
 	EmployeeUtils employeeUtils;
-*/
+
 	/**
 	 * Create Employee
 	 * 
@@ -88,32 +86,9 @@ public class EmployeeController {
 	}
 
 	private void validateCreateEmployee(EmployeeDTO employeeDTO) throws ApplicationException {
-		String validateStatus = valCrteEmpMandFildsChck(employeeDTO);
+		String validateStatus = employeeUtils.validateCreateEmployee(employeeDTO);
 		if (validateStatus != null) {
 			throw new ApplicationException(StatusCode.BAD_REQUEST.getCode(), validateStatus);
 		}
 	}
-	
-	public String valCrteEmpMandFildsChck(EmployeeDTO employeeDTO) {
-		
-		Long empId = employeeDTO.getEmployeeId() == null ? 0L : employeeDTO.getEmployeeId();
-		String empName = employeeDTO.getEmployeeName() == null ? "" : employeeDTO.getEmployeeName().trim();
-		Date doj = employeeDTO.getDoj();
-		Date dob = employeeDTO.getDob();
-
-		if (empId == 0) {
-			return EmployeeConstants.EMP_ID;
-		}
-		if (empName == null || empName.isEmpty()) {
-			return EmployeeConstants.EMP_NAME;
-		}
-		if (doj == null) {
-			return EmployeeConstants.DOJ;
-		}
-		if (dob == null) {
-			return EmployeeConstants.DOB;
-		}
-		return null;
-	}
-
 }

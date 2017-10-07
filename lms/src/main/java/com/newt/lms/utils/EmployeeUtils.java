@@ -1,6 +1,9 @@
 package com.newt.lms.utils;
 
 import java.util.Date;
+
+import org.springframework.stereotype.Component;
+
 import com.newt.lms.constants.EmployeeConstants;
 import com.newt.lms.model.jpa.dto.EmployeeDTO;
 
@@ -8,6 +11,7 @@ import com.newt.lms.model.jpa.dto.EmployeeDTO;
  * @author nareshd
  *
  */
+@Component
 public class EmployeeUtils {
 
 	public String validateCreateEmployee(EmployeeDTO employeeDTO) {

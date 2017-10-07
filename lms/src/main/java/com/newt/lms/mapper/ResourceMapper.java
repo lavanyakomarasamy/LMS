@@ -1,9 +1,9 @@
 package com.newt.lms.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.newt.lms.model.jpa.dao.Employee;
 import com.newt.lms.model.jpa.dto.EmployeeDTO;
+
 import ma.glasnost.orika.MapperFacade;
 
 /**
