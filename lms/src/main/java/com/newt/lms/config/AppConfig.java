@@ -37,5 +37,4 @@ public class AppConfig {
 		return new ResourceMapper();
 	}
   
-	
 }
