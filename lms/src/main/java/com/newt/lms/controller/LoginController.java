@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.newt.lms.constants.StatusCode;
 import com.newt.lms.exception.ApplicationException;
-import com.newt.lms.model.Employee;
-import com.newt.lms.model.Login;
-import com.newt.lms.model.LoginReq;
-import com.newt.lms.model.LoginResponse;
-import com.newt.lms.model.ResponseStatus;
+import com.newt.lms.model.jpa.dao.Employee;
+import com.newt.lms.model.jpa.dao.Login;
+import com.newt.lms.model.jpa.dao.LoginReq;
+import com.newt.lms.model.jpa.dao.LoginResponse;
+import com.newt.lms.model.jpa.dao.ResponseStatus;
 import com.newt.lms.service.EmployeeService;
 import com.newt.lms.service.LoginService;
 

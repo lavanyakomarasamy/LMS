@@ -28,7 +28,7 @@ spring:
  profiles: development
 lms.datasource:
   driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/lms
+  url: jdbc:mysql://localhost:3306/test
   username: root
   password: root
   accessToUnderlyingConnectionAllowed: true
