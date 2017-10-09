@@ -1,4 +1,4 @@
-package com.newt.lms.model;
+package com.newt.lms.model.jpa.dao;
 
 import java.util.List;
 

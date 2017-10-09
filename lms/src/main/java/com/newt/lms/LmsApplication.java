@@ -7,10 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.newt.lms")
-@EnableJpaRepositories("com.newt.lms.repository")
-@EntityScan("com.newt.lms.model")
-public class LmsApplication {
+@ComponentScan(basePackages = {"com.newt.lms","com.newt.lms.utils","com.newt.lms.controller"})
+/*@EnableJpaRepositories("com.newt.lms.jpa.repository")
+@EntityScan("com.newt.lms")
+*/public class LmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LmsApplication.class, args);

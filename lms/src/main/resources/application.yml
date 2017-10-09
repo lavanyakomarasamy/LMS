@@ -28,9 +28,9 @@ spring:
  profiles: development
 lms.datasource:
   driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/lms
+  url: jdbc:mysql://localhost:3306/test
   username: root
-  password: root
+  password: tiger
   accessToUnderlyingConnectionAllowed: true
   max-active: 25
   max-idle: 10
