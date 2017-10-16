@@ -39,11 +39,11 @@ public class EmployeeService {
 	 * 
 	 * @param employeeDTO
 	 * @return
-	 * @throws ApplicationException 
+	 * @throws ApplicationException
 	 */
 	public Employee createEmployee(EmployeeDTO employeeDTO) throws ApplicationException {
 		Date date = new Date();
-		
+
 		Employee emp = employeeRepository.findByEmployeeId(employeeDTO.getEmployeeId());
 		if (emp == null) {
 			Employee employee = resourceMapper.convertEmployeeDTOToEmployeeDAO(employeeDTO);
@@ -51,9 +51,7 @@ public class EmployeeService {
 			employee.setModifiedDate(date);
 			employee = employeeRepository.save(employee);
 			return employee;
-		}
-		else
-		{
+		} else {
 			LOGGER.warn("Record already existed for the given employeeId - " + employeeDTO.getEmployeeId());
 			throw new ApplicationException(StatusCode.NOT_CREATED.getCode(), StatusCode.NOT_CREATED.getDesc());
 		}
@@ -104,7 +102,7 @@ public class EmployeeService {
 		empDao.setModifiedDate(date);
 		return employeeRepository.save(empDao);
 	}
-	
+
 	/**
 	 * Get Employee
 	 * 
@@ -123,7 +121,7 @@ public class EmployeeService {
 			return empDao;
 		}
 	}
-	
+
 	/**
 	 * Delete Employee
 	 * 

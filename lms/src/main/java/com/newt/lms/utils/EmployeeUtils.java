@@ -15,7 +15,7 @@ import com.newt.lms.model.jpa.dto.EmployeeDTO;
 public class EmployeeUtils {
 
 	/**
-	 * Validate create, get and update employee 
+	 * Validate create, get and update employee
 	 * 
 	 * @param employeeDTO
 	 * @param operationType
@@ -27,7 +27,8 @@ public class EmployeeUtils {
 		Date doj = employeeDTO.getDoj();
 		Date dob = employeeDTO.getDob();
 
-		if (operationType.equalsIgnoreCase(EmployeeConstants.UPDATE) || operationType.equalsIgnoreCase(EmployeeConstants.GET)) {
+		if (operationType.equalsIgnoreCase(EmployeeConstants.UPDATE)
+				|| operationType.equalsIgnoreCase(EmployeeConstants.GET)) {
 			if (empId == 0) {
 				return EmployeeConstants.EMP_ID;
 			}
