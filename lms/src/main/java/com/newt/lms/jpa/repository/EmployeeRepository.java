@@ -1,10 +1,12 @@
 package com.newt.lms.jpa.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.newt.lms.model.jpa.dao.Employee;
+
 
 /**
  * @author lavanyak
@@ -13,5 +15,8 @@ import com.newt.lms.model.jpa.dao.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
-	Employee findAll(Specification<Employee> employee);
+	List<Employee> findAll(Specification<Employee> employee);
+	
+	Employee findByEmployeeId(Long employee);
+	
 }
