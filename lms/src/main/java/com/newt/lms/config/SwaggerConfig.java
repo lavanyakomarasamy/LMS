@@ -21,6 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = "com.newt.lms")
 public class SwaggerConfig {
+	
 	@Bean
 	public Docket restfulApi() {
 		return new Docket(DocumentationType.SWAGGER_2).groupName("lms-api").select().paths(paths()).build()

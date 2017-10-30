@@ -1,18 +1,29 @@
 package com.newt.lms;
 
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.newt.lms","com.newt.lms.utils","com.newt.lms.controller"})
-/*@EnableJpaRepositories("com.newt.lms.jpa.repository")
-@EntityScan("com.newt.lms")
-*/public class LmsApplication {
+@ComponentScan("com.newt.lms")
+public class LmsApplication {
+	
+	  /**
+     * Logger
+     */
+    private static final Logger LOGGER = Logger.getLogger(LmsApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(LmsApplication.class, args);
 	}
+
+    public LmsApplication() {
+	startup();
+    }
+
+    public void startup() {
+	LOGGER.info("Starting LmsApplication ...");
+    }
+
 }
