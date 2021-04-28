@@ -50,3 +50,5 @@ CREATE TABLE `login` (
   CONSTRAINT `emp_id` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`employee_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
+
+Local Path: http://localhost:15008/swagger-ui.html
